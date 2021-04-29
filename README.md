@@ -17,14 +17,14 @@ Run with "node app.js"
 
 You can then call a Tableau view using the format 
 
-http://localhost:3000/index.html?proj=default&view=My%20View&refresh=1
+http://localhost:3000/index.html?proj=default&view=My%20View&refresh=1  
 localhost:3000 is where the express app will run
 
-view is a parameter to take a Tableau view name. NB this is the name of the view, so what it looks like on the worksheet tab. Spaces must be maintained. 
-proj is the Tableau project where the view resides. If the proj parameter is omitted then it will default to the default site. 
-refresh is the time in minutes of the refresh rate of the image.
+*view* is a parameter to take a Tableau view name. NB this is the name of the view, so what it looks like on the worksheet tab. Spaces must be maintained.  
+*proj* is the Tableau project where the view resides. If the proj parameter is omitted then it will default to the default site.  
+*refresh* is the time in minutes of the refresh rate of the image.  
 
-As Tableau doesn't ensure the view name is unique, ensure that you only call unique names by a naming convention. (Or amend the code to make it more robust!) 
+As Tableau doesn't ensure the view name is unique within a project, ensure that you only call unique names by a naming convention. (Or amend the code to make it more robust!) 
 
 This code calls for the high resolution image of the view. If a Tableau view is set to automatic sizing, the resultant image will be a square 1600x1600. If a fixed size is used, the aspect ratio will be maintained at 4x the resolution. 
 
