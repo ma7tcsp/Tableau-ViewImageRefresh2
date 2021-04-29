@@ -1,1 +1,61 @@
+<html>
+<head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .imgbox {
+            display: grid;
+            height: 100%;
+        }
+        .center-fit {
+            max-width: 100%;
+            max-height: 100vh;
+            margin: auto;
+        }
+    </style>
+    <script>
+        var url = new URL(window.location.href);
+        var view = url.searchParams.get("view");
+        var proj = url.searchParams.get("proj");
+        var refresh=url.searchParams.get("refresh");
+        if(!proj)
+            proj="default"
 
+        function getPic(){
+            fetch("/list?view="+view+"&proj="+proj, {
+                method: "GET"
+            }).then(res => {
+                var js=res.json();
+                return js;
+            }).then((data) => {
+                if (!data || data.length==0)
+                    alert('View "' + view +'" not found...')
+                if(data.message)
+                    alert(data.message)
+                else if(data[0])
+                    document.getElementById("pict").src="http://"+data[0].url+"?r="+new Date().getTime();
+                });
+            }
+
+
+
+
+
+
+
+        function refr() {
+            setInterval(()=>{
+                getPic();
+            },refresh?refresh*1000*60:20000)
+        };
+        getPic();
+    </script>
+</head>
+<body onload="refr()">
+<div class="imgbox">
+    <img id="pict" class="center-fit" src='/empty.png'>
+</div>
+</body>
+</html>
