@@ -28,4 +28,5 @@ As Tableau doesn't ensure the view name is unique within a project, ensure that 
 
 This code calls for the high resolution image of the view. If a Tableau view is set to automatic sizing, the resultant image will be a square 1600x1600. If a fixed size is used, the aspect ratio will be maintained at 4x the resolution. 
 
-There is some error checking to ensure that the project names and views exist, however this code is provided "as is".  
+There is some error checking to ensure that the project names and views exist, however this code is provided "as is". 
+Huge Thanks to @aalteirac for helping reshape the code. 
