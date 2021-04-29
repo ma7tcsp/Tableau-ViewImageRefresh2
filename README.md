@@ -9,8 +9,11 @@ This version works with Personal Access Tokens, so a relevant PAT Name and PAT S
 https://help.tableau.com/current/pro/desktop/en-us/useracct.htm
 
 Tableau Host is the full pod name including https://, eg: https://eu-west-1a.online.tableau.com/
-Tableau Site is the Tableua Site
+
+Tableau Site is the Tableau Site
+
 PAT Name and PAT Secret are your values for authentcation. 
+
 
 Run with "node app.js"
 
