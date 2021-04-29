@@ -8,11 +8,9 @@ Change app.js line 45 to point to your instance of Tableau server.
 This version works with Personal Access Tokens, so a relevant PAT Name and PAT Secret must be set up to use this. 
 https://help.tableau.com/current/pro/desktop/en-us/useracct.htm
 
-Tableau Host is the full pod name including https://, eg: https://eu-west-1a.online.tableau.com/
-
-Tableau Site is the Tableau Site
-
-PAT Name and PAT Secret are your values for authentcation. 
+Tableau Host is the full pod name including https://, eg: https://eu-west-1a.online.tableau.com/  
+Tableau Site is the Tableau Site  
+PAT Name and PAT Secret are your values for authentcation.   
 
 
 Run with "node app.js"
