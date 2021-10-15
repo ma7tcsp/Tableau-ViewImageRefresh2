@@ -43,6 +43,7 @@ app.get('/list', async function (req, res) {
   if(!viewName)
     return res.send("Missing 'view' parameter !!");
     return list(req.get('host'),'@@@Tableau Host@@@','@@@Site Name@@@',project,'@@@PAT Name@@@','@@@PAT Secret@@@',res,viewName);
+    
 });
 app.post('/list', async function (req, res) {
   var m=validateParam(req,true);
@@ -232,9 +233,11 @@ function dumpViewPics(protocol,port,token,host,site,project,viewName){
     if(vs)
       while (retrieved<vs.total){
         var temp= await getViews(protocol,port,token,host,site,pid,pageNumber,viewName);
-        retrieved+=temp.retrieved;
-        allViews=allViews.concat(temp.views);
-        pageNumber=pageNumber+1;
+        if(temp){
+          retrieved+=temp.retrieved;
+          allViews=allViews.concat(temp.views);
+          pageNumber=pageNumber+1;
+        }
       }
     views=allViews;
     var existing=[];
@@ -399,10 +402,13 @@ function getViews(protocol,port,token,host,siteid,projectID,pageNumber,viewName)
             var res = parsedXml.tsResponse.views[0].view;
             if(res)
               res.map((v)=>{
-                if(projectID && v.$ && v.project[0].$.id==projectID){
+                if(projectID && v.$ && v.project && v.project[0].$.id==projectID){
                   if(viewName && v.$.name==viewName)
                   vs.push({"id":v.$.id,"wid":v.workbook[0].$.id,"name":v.$.name,"url":v.$.contentUrl});
                 }
+		  else{
+			console.log("error",v)		  
+		      }
               })
             resolve ({views:vs,retrieved:res.length,total:parsedXml.tsResponse.pagination?parsedXml.tsResponse.pagination[0].$.totalAvailable:0});
           }
